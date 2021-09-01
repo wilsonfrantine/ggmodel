@@ -1,6 +1,11 @@
 
 .RData
 .Rhistory
+.Rproj.user/
+.RData
+.Rhistory
+.Rbuildignore
+.ggmodel.Rproj
 .Rproj.user/2A7FE5CD/cpp-definition-cache
 .Rproj.user/2A7FE5CD/pcs/files-pane.pper
 .Rproj.user/2A7FE5CD/pcs/source-pane.pper
@@ -85,3 +90,5 @@
 .Rproj.user/2A7FE5CD/sources/s-E6754DB0/41F46902-contents
 .Rproj.user/2A7FE5CD/sources/prop/35F9009F
 .Rproj.user/2A7FE5CD/sources/s-E6754DB0/3C9EF92F-contents
+.Rproj.user/2A7FE5CD/sources/per/t/41F46902
+.Rproj.user/2A7FE5CD/sources/per/t/41F46902-contents
