@@ -17,12 +17,10 @@ install_github("wilsonfrantine/ggmodel")
 
 ```{r}
 #create a lm or glm model
-m <- glm(mpg ~ wt + hp, data = mtcars)
-
-#Ploting a response surface for the multiple model
-ggsurface(m, x.name="Weight", y.name="Horsepower",
-    legend.title="Miles per Gallon", col.low = "white",
-    col.high = "blue")
+data(mtcars)
+m <- glm(mpg ~ wt + hp, family = "poisson")
+ggsurface(m, x.var = "wt", y.var = "hp",
+          legend.title = "milles per galon", high.col = "darkred" )
 ```
 
 
