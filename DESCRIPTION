@@ -1,7 +1,7 @@
 Package: ggmodel
 Type: Package
 Title: Plot model objects with ggplot
-Version: 0.1.1
+Version: 0.1.2
 Author: Wilson Frantine-Silva
 Maintainer: Wilson Frantine-Silva <wilsonfratntine@gmail.com>
 Description: An R package to 

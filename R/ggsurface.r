@@ -15,18 +15,20 @@
 #' @param ygrid.size  same as xgrid.size for the y variable. The default is also 15.
 #' @param n.bins An integer. The number of division / breaks for the plot. More bins will result in a plot with more divisions.
 #' @param round.legend the number of decimal cases to round the scales at the legend. The default is 0, which rounds to the next integer. Users may also uses -1 to round for the nearest 10th number.
+#' @param scale.type the type of prediction required. The default is "link", and returns the scale of the linear predictors. The alternative "response" return the prediction at the reponse variable scale. So if a glm is ran with a binomial link function than the prediction are probabilities at logit scale, but if type = "response" the prediction will be returned at probabiliti scales. See more in stats::predict help.
 #' @usage ggsurface(m, x.var, y.var, x.label, y.label, legend.title,
-#' low.col, high.col, xgrid.size, ygrid.size, n.bins, round.legend)
+#' low.col, high.col, xgrid.size, ygrid.size, n.bins, round.legend, scale.type)
 #' @examples
 #' data(mtcars)
 #' m <- glm(mpg ~ wt + hp, data=mtcars, family = "gaussian")
 #' ggsurface(m, x.var = "wt", y.var = "hp",
 #'    legend.title = "milles per galon", high.col = "darkred",
 #'    round.legend = 0)
+#' @seealso stats::predict, stats::glm, stats::lm, stats::lm
 #' @details This function takes a model object and uses the function predicts to fit the model to a grid of x size. Therefore at this version the function needs one of the model objects from the stats package.
 #' In case of any crash, plese contact-me at: <wilsonfratntine@@gmail.com>.
 
-ggsurface <- function(m=NULL, x.var=NULL, y.var=NULL, x.label=NULL, y.label=NULL, legend.title=NULL, low.col="grey80", high.col="darkred", xgrid.size=10, ygrid.size=10, n.bins=11, round.legend=0){
+ggsurface <- function(m=NULL, x.var=NULL, y.var=NULL, x.label=NULL, y.label=NULL, legend.title=NULL, low.col="grey80", high.col="darkred", xgrid.size=10, ygrid.size=10, n.bins=11, round.legend=0, scale.type="link"){
 
   if(is.null(m)){
     stop("you have to provide a model object")
@@ -65,7 +67,7 @@ ggsurface <- function(m=NULL, x.var=NULL, y.var=NULL, x.label=NULL, y.label=NULL
   nd <- base::expand.grid(xgrid, ygrid)
   base::names(nd) <- c(base::names(d[x.var]), base::names(d[y.var]))
 
-  z <- stats::predict(m, newdata = nd, type = "response")
+  z <- stats::predict(m, newdata = nd, type = scale.type)
 
   df <- base::data.frame(nd,"z"=z)
 

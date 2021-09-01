@@ -5,7 +5,7 @@
 \title{Plot Model Surface with ggplot2}
 \usage{
 ggsurface(m, x.var, y.var, x.label, y.label, legend.title,
-low.col, high.col, xgrid.size, ygrid.size, n.bins, round.legend)
+low.col, high.col, xgrid.size, ygrid.size, n.bins, round.legend, scale.type)
 }
 \arguments{
 \item{m}{an object glm, lm or loess object model from stats package}
@@ -31,6 +31,8 @@ low.col, high.col, xgrid.size, ygrid.size, n.bins, round.legend)
 \item{n.bins}{An integer. The number of division / breaks for the plot. More bins will result in a plot with more divisions.}
 
 \item{round.legend}{the number of decimal cases to round the scales at the legend. The default is 0, which rounds to the next integer. Users may also uses -1 to round for the nearest 10th number.}
+
+\item{scale.type}{the type of prediction required. The default is "link", and returns the scale of the linear predictors. The alternative "response" return the prediction at the reponse variable scale. So if a glm is ran with a binomial link function than the prediction are probabilities at logit scale, but if type = "response" the prediction will be returned at probabiliti scales. See more in stats::predict help.}
 }
 \description{
 a ggplot2 2D surface plot function for R glm or lm models
@@ -45,6 +47,9 @@ m <- glm(mpg ~ wt + hp, data=mtcars, family = "gaussian")
 ggsurface(m, x.var = "wt", y.var = "hp",
    legend.title = "milles per galon", high.col = "darkred",
    round.legend = 0)
+}
+\seealso{
+stats::predict, stats::glm, stats::lm, stats::lm
 }
 \author{
 Wilson Frantine-Silva
