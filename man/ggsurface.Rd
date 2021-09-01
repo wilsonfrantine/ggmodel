@@ -5,7 +5,7 @@
 \title{Plot Model Surface with ggplot2}
 \usage{
 ggsurface(m, x.var, y.var, x.label, y.label, legend.title,
-low.col, high.col, xgrid.size, ygrid.size, n.bins)
+low.col, high.col, xgrid.size, ygrid.size, n.bins, round.legend)
 }
 \arguments{
 \item{m}{an object glm, lm or loess object model from stats package}
@@ -29,6 +29,8 @@ low.col, high.col, xgrid.size, ygrid.size, n.bins)
 \item{ygrid.size}{same as xgrid.size for the y variable. The default is also 15.}
 
 \item{n.bins}{An integer. The number of division / breaks for the plot. More bins will result in a plot with more divisions.}
+
+\item{round.legend}{the number of decimal cases to round the scales at the legend. The default is 0, which rounds to the next integer. Users may also uses -1 to round for the nearest 10th number.}
 }
 \description{
 a ggplot2 2D surface plot function for R glm or lm models
@@ -38,14 +40,11 @@ This function takes a model object and uses the function predicts to fit the mod
 In case of any crash, plese contact-me at: <wilsonfratntine@gmail.com>.
 }
 \examples{
-ab  <- c(257,123,64,82,73,162,115,45,50,49,85,33)
-fc  <- c(60.8,47.5,10.6,6.5,42.6,33.7,82.5,22.0,22.7,26.7,21.3,11.7)
-dbh <- c(23,27,16,22,26,35,63,30,53,22,32,32)
-
-m <- glm(ab ~ fc + dbh, family = "poisson")
-ggsurface(m, x.var = "fc", y.var = "dbh",
-x.label = "flowering coverage", y.label = "diameter at breast height",
-legend.title = "Abundance" )
+data(mtcars)
+m <- glm(mpg ~ wt + hp, data=mtcars, family = "gaussian")
+ggsurface(m, x.var = "wt", y.var = "hp",
+   legend.title = "milles per galon", high.col = "darkred",
+   round.legend = 0)
 }
 \author{
 Wilson Frantine-Silva

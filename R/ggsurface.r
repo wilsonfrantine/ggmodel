@@ -14,21 +14,19 @@
 #' @param xgrid.size  An integer representing the size of the grid to create a prediction. This variable controls the number of elements to build a new x.var interval to fit the model. The default is 15.
 #' @param ygrid.size  same as xgrid.size for the y variable. The default is also 15.
 #' @param n.bins An integer. The number of division / breaks for the plot. More bins will result in a plot with more divisions.
+#' @param round.legend the number of decimal cases to round the scales at the legend. The default is 0, which rounds to the next integer. Users may also uses -1 to round for the nearest 10th number.
 #' @usage ggsurface(m, x.var, y.var, x.label, y.label, legend.title,
-#' low.col, high.col, xgrid.size, ygrid.size, n.bins)
+#' low.col, high.col, xgrid.size, ygrid.size, n.bins, round.legend)
 #' @examples
-#' ab  <- c(257,123,64,82,73,162,115,45,50,49,85,33)
-#' fc  <- c(60.8,47.5,10.6,6.5,42.6,33.7,82.5,22.0,22.7,26.7,21.3,11.7)
-#' dbh <- c(23,27,16,22,26,35,63,30,53,22,32,32)
-#'
-#' m <- glm(ab ~ fc + dbh, family = "poisson")
-#' ggsurface(m, x.var = "fc", y.var = "dbh",
-#' x.label = "flowering coverage", y.label = "diameter at breast height",
-#' legend.title = "Abundance" )
+#' data(mtcars)
+#' m <- glm(mpg ~ wt + hp, data=mtcars, family = "gaussian")
+#' ggsurface(m, x.var = "wt", y.var = "hp",
+#'    legend.title = "milles per galon", high.col = "darkred",
+#'    round.legend = 0)
 #' @details This function takes a model object and uses the function predicts to fit the model to a grid of x size. Therefore at this version the function needs one of the model objects from the stats package.
 #' In case of any crash, plese contact-me at: <wilsonfratntine@@gmail.com>.
 
-ggsurface <- function(m=NULL, x.var=NULL, y.var=NULL, x.label=NULL, y.label=NULL, legend.title=NULL, low.col="grey80", high.col="darkred", xgrid.size=10, ygrid.size=10, n.bins=11){
+ggsurface <- function(m=NULL, x.var=NULL, y.var=NULL, x.label=NULL, y.label=NULL, legend.title=NULL, low.col="grey80", high.col="darkred", xgrid.size=10, ygrid.size=10, n.bins=11, round.legend=0){
 
   if(is.null(m)){
     stop("you have to provide a model object")
@@ -52,7 +50,7 @@ ggsurface <- function(m=NULL, x.var=NULL, y.var=NULL, x.label=NULL, y.label=NULL
     x.label <- names(d[x.var])
   }
   if(is.null(y.label)){
-    x.label <- names(d[y.var])
+    y.label <- names(d[y.var])
   }
   if(is.null(legend.title)){
     legend.title <- "prediction at response scale"
@@ -77,7 +75,7 @@ ggsurface <- function(m=NULL, x.var=NULL, y.var=NULL, x.label=NULL, y.label=NULL
   z <- df$z
 
   legend.labels <- base::round(base::seq(
-    base::min(z), base::max(z), length=n.bins), -1)
+    base::min(z), base::max(z), length=n.bins), round.legend)
   legend.labels[seq(ifelse( (n.bins %% 2) == 0, 1, 0), n.bins-1, 2)] <- ""
 
   p <- ggplot2::ggplot(data = df, mapping = ggplot2::aes(x=x,y=y,z=z))+
