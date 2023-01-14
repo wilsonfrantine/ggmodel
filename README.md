@@ -9,8 +9,7 @@ In case you don't have devtools, run the following line:
 `install.packages("devtools")`
 
 ```{r}
-library(devtools)
-install_github("wilsonfrantine/ggmodel")
+remotes::install_github("wilsonfrantine/ggmodel")
 ```
 
 ## A simple example
