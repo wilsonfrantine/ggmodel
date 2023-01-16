@@ -28,11 +28,19 @@ mPlot
 
 <img src="img/mPlot.png" />
 
-## Adjusting aestetics 
+## Adjusting aesthetics
+
+As a ggplot2 object, you can change wherever you want in the graph with ggplot2 sintaxe.
+
 ```{r}
-mPlot2 <- mPlot + ggtitle(label= "The title of my plot is...") +
-labs(x="a new label for the X axis", y="a new label for the y", fill="a new label for the fill") +
-scale_fill_viridis_d() # a new color scale.
+mPlot2 <- mPlot + 
+           ggtitle(label= "The title of my plot is...") + 
+           labs( 
+                x = "a new label for the X axis",
+                y = "a new label for the y", 
+                fill = "a new label for the legend"
+                ) +
+           scale_fill_viridis_d() # a new color scale.
 
 mPlot2
 ```
