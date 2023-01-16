@@ -1,7 +1,7 @@
 # ggmodel
 A function collection to plot R base model objects with ggplot2
 
-<img src="img/plot1.png"></img>
+<img src="img/plot1.png" />
 
 ## How to install
 
