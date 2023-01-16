@@ -1,12 +1,11 @@
 # ggmodel
 A function collection to plot R base model objects with ggplot2
 
+<img src="img/plot1.png"></img>
+
 ## How to install
 
-To install the `ggmodel` you will need to install the `devtools` package.
-
-In case you don't have devtools, run the following line:
-`install.packages("devtools")`
+To install the `ggmodel` run the following line:
 
 ```{r}
 remotes::install_github("wilsonfrantine/ggmodel")
