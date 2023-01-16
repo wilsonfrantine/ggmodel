@@ -1,5 +1,5 @@
 # ggmodel
-A function collection to plot R base model objects with ggplot2
+A collection o functions to plot R base model objects with ggplot2
 
 <img src="img/plot1.png" />
 
