@@ -26,7 +26,7 @@ mPlot <- ggsurface(m, x.var = "wt", y.var = "hp",
 mPlot
 ```
 
-<img scr="img/mPlot.png" />
+<img src="img/mPlot.png" />
 
 ## Adjusting aestetics 
 ```{r}
@@ -37,7 +37,7 @@ scale_fill_viridis_d() # a new color scale.
 mPlot2
 ```
 
-<img scr="img/mPlot2.png" />
+<img src="img/mPlot2.png" />
 
 ## Creating a composition
 
@@ -53,7 +53,7 @@ library("patchwork")
 mPlot+ggtitle("A") + mPlot2+ggtitle("B")
 
 ```
-<img scr="img/comp.png" />
+<img src="img/comp.png" />
 
 ## Disclaimer
 
