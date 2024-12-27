@@ -1,4 +1,4 @@
-# 🎨 ggmodel – *Visualize Base R Models with ggplot2* 🚧  
+# <img src="https://cdn-icons-png.flaticon.com/512/2280/2280566.png" width=40px align="center" /> ggmodel – *Visualize Base R Models with ggplot2* 🚧  
 
 **ggmodel** is an R package aimed at transforming model outputs from base R into **beautiful 2D visualizations using ggplot2**. 📊  
 Currently, **the package is in beta** and includes **one core function** – `ggsurface` – designed to generate **2D surface plots** from linear, generalized linear, and loess models.  
